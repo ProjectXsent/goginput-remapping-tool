@@ -1,4 +1,4 @@
-# goginput_remap
+# goginput_remapping_tool
 
 An interactive Windows console tool that builds controller presets for the **GOG DirectInput wrapper** (`dinput.dll` + `goginput.ini`).
 
@@ -70,13 +70,13 @@ Other valid names include `kb_*` (keyboard keys) and `ms_*` (mouse), which this 
 MSVC (Developer Command Prompt):
 
 ```bat
-cl /EHsc /O2 goginput_remap.cpp dinput8.lib dxguid.lib user32.lib
+cl /EHsc /O2 goginput_remappping_tool_sdl.cpp dinput8.lib dxguid.lib user32.lib
 ```
 
 MinGW-w64:
 
 ```sh
-g++ -O2 -static goginput_remap.cpp -o goginput_remap.exe -ldinput8 -ldxguid -luser32
+g++ -O2 -static goginput_remappping_tool_sdl.cpp -o goginput_remappping_tool_sdl.exe -ldinput8 -ldxguid -luser32
 ```
 
 **Build as x86 (32-bit)** if you want SDL support alongside GOG's wrapper. The wrapper's `dinput.dll` is 32-bit, so the `SDL2.dll` next to the game is most likely 32-bit too, and a 64-bit exe cannot load it. The tool reports "bitness differs" when that happens. The DirectInput part works in either bitness.
@@ -84,7 +84,7 @@ g++ -O2 -static goginput_remap.cpp -o goginput_remap.exe -ldinput8 -ldxguid -lus
 ## Usage
 
 ```text
-goginput_remap.exe [path\to\goginput.ini] [options]
+goginput_remappping_tool_sdl.exe [path\to\goginput.ini] [options]
 ```
 
 | Option | Meaning |
