@@ -12,7 +12,7 @@ GOG's wrapper remaps controllers using per-device sections in `goginput.ini`, ke
 
 ## How the ini format works
 
-Taken from the shipped `goginput.ini`:
+Taken from `goginput.ini`:
 
 ```ini
 [sony_dualshock4_a]
