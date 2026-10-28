@@ -28,7 +28,7 @@ pad_button2       = pad_button1
 
 - The GUID is `PPPPVVVV-0000-0000-0000-504944564944` (product ID, then vendor ID).
 - Each line is `<physical input> = <what the game sees>`.
-- The "game sees" side is the Xbox-style layout the shipped presets target:
+- The "game sees" side is the Xbox-style layout presets target:
 
 | Logical control | ini name |
 |---|---|
@@ -49,7 +49,7 @@ Other valid names include `kb_*` (keyboard keys) and `ms_*` (mouse), which this 
 - Builds the GUID from the pad itself. No VID/PID lookup is needed.
 - A 20-step wizard covers both sticks, face buttons, bumpers, triggers, Back/Start, stick clicks and the D-pad. Enter or `S` skips a step.
 - Handles **inverted axes** and **triggers on axes or buttons**. If a pad reports both a button and an axis for a trigger, the digital button is preferred.
-- Adds `dev_null` lines for leftover inputs that would collide with a remapped target, as the shipped DualShock/DualSense sections do.
+- Adds `dev_null` lines for leftover inputs that would collide with a remapped target, as DualShock/DualSense sections do.
 - **Optional SDL assist:** it shows the pad's SDL name and GUID, suggests a layout from SDL's controller database, and shows SDL's guess as a hint during the wizard. You can accept the suggestion without pressing anything.
 - Merges into your existing `goginput.ini`:
   - replaces a section with the same name or GUID (it asks first),
@@ -107,12 +107,12 @@ Use `--monitor` first if you want to see how your pad is numbered. Button number
 
 ## SDL support
 
-The shipped `dinput.dll` wraps the real DirectInput and loads `sdl2.dll` at run time. From its strings, it appears to use SDL only for GUID, name and LED functions. The ini keys are therefore plain DirectInput indices, and this tool keeps DirectInput as the source of truth for presses. SDL only adds identification and a suggested layout.
+`dinput.dll`/`dinput8.dll` wraps the real DirectInput and loads `SDL2.dll` at run time. From its strings, it appears to use SDL only for GUID, name and LED functions. The ini keys are therefore plain DirectInput indices, and this tool keeps DirectInput as the source of truth for presses. SDL only adds identification and a suggested layout.
 
 - `SDL2.dll` is loaded at run time, so nothing links against SDL. The search order is: `--sdl <path>`, the folder of the ini you pass, then standard Windows lookup (tool folder, system folders, PATH).
 - By default the tool sets SDL hints (`SDL_JOYSTICK_HIDAPI=0`, `SDL_JOYSTICK_RAWINPUT=0`, `SDL_XINPUT_ENABLED=0`) so SDL uses its DirectInput backend and its button and axis numbering lines up with the wrapper's. With `--sdl-native`, PlayStation and Switch pads get SDL-synthesised layouts that may not match.
 - A `gamecontrollerdb.txt` next to the ini or the tool is loaded as extra mappings.
-- SDL's suggestion treats triggers as axes if the database says so, which in auto mode produces analog-to-button mappings. The wizard prefers the pad's digital trigger buttons when they exist, matching the shipped DualShock presets.
+- SDL's suggestion treats triggers as axes if the database says so, which in auto mode produces analog-to-button mappings. The wizard prefers the pad's digital trigger buttons when they exist, matching the DualShock presets.
 
 ## How it works
 
