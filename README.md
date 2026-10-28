@@ -107,7 +107,7 @@ Use `--monitor` first if you want to see how your pad is numbered. Button number
 
 ## SDL support
 
-`dinput.dll`/`dinput8.dll` wraps the real DirectInput and loads `SDL2.dll` at run time. From its strings, it appears to use SDL only for GUID, name and LED functions. The ini keys are therefore plain DirectInput indices, and this tool keeps DirectInput as the source of truth for presses. SDL only adds identification and a suggested layout.
+GOG's `dinput.dll`/`dinput8.dll` wraps the real DirectInput and loads `SDL2.dll` at run time. From its strings, it appears to use SDL only for GUID, name and LED functions. The ini keys are therefore plain DirectInput indices, and this tool keeps DirectInput as the source of truth for presses. SDL only adds identification and a suggested layout.
 
 - `SDL2.dll` is loaded at run time, so nothing links against SDL. The search order is: `--sdl <path>`, the folder of the ini you pass, then standard Windows lookup (tool folder, system folders, PATH).
 - By default the tool sets SDL hints (`SDL_JOYSTICK_HIDAPI=0`, `SDL_JOYSTICK_RAWINPUT=0`, `SDL_XINPUT_ENABLED=0`) so SDL uses its DirectInput backend and its button and axis numbering lines up with the wrapper's. With `--sdl-native`, PlayStation and Switch pads get SDL-synthesised layouts that may not match.
